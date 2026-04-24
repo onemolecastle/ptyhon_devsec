@@ -52,7 +52,6 @@ jobs:
 
       - name: Build Docker Image
         run: | 
-          ls -ld optimisation
           file optimisation
           sudo docker system prune -a
           sudo docker build --no-cache --progress=plain -t flask-app:${{ github.sha }} .

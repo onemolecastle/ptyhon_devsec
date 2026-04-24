@@ -54,7 +54,7 @@ jobs:
         run: |
           sudo docker build --no-cache --progress=plain -t flask-app:${{ github.sha }} .
       - name: Push to docker hub 
-        run: sudo docker push ${{secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
+        run: sudo docker push flask-app:${{ github.sha }}
           
 
       # 4. Container Scan (Trivy)

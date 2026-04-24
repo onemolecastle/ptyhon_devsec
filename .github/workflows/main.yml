@@ -44,6 +44,7 @@ jobs:
         run: |
           git clean -fdx
           rm -rf optimisation
+          mv optimisation optimisation.py
       - name: Build and push
         uses: docker/build-push-action@v6
         with:

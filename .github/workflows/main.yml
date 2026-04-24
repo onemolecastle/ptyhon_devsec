@@ -51,7 +51,10 @@ jobs:
       #    file: ./Dockerfile
 
       - name: Build Docker Image
-        run: docker build -t flask-app:${{ github.sha }} .
+        run: |
+          docker build -t flask-app:${{ github.sha }} .
+          ls -la /var/lib/docker/overlay2/whvh772pa7q874335zqf0pwrm/merged/app/optimisation
+          cat /var/lib/docker/overlay2/whvh772pa7q874335zqf0pwrm/merged/app/optimisation
 
       # 4. Container Scan (Trivy)
       - name: Container Scan (Trivy)

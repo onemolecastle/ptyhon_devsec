@@ -1,13 +1,13 @@
 # Stage 1: Build
 FROM python:3.11-slim as builder
 WORKDIR /app
+RUN ls -la
 COPY requirements.txt . # caching optimisation
 RUN pip install --user --no-cache-dir -r requirements.txt
 
 # Stage 2: Final Run
 FROM python:3.11-slim
 WORKDIR /app
-RUN ls -la
 # Create a non-privileged user
 RUN groupadd -g 999 appuser && useradd -r -u 999 -g appuser appuser
 COPY --from=builder /root/.local /home/appuser/.local

@@ -63,7 +63,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
 
   deploy:
-    needs:   build_push_and_scan:
+    needs: build_push_and_scan
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to EC2 via SSH

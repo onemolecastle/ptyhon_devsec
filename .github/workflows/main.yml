@@ -54,7 +54,9 @@ jobs:
         run: |
           sudo docker build --no-cache --progress=plain -t flask-app:${{ github.sha }} .
       - name: Push to docker hub 
-        run: sudo docker push flask-app:${{ github.sha }}
+        run: |
+         echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+         sudo docker push ${{ secrets.DOCKERHUB_USERNAME }}flask-app:${{ github.sha }}
           
 
       # 4. Container Scan (Trivy)
@@ -62,7 +64,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           #image-ref: 'flask-app:${{ github.sha }}'
-          image-ref: ${{secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
+          image-ref: flask-app:${{ github.sha }}
           format: 'table'
           exit-code: '1' # Fails build if vulnerabilities are found
           severity: 'CRITICAL,HIGH'
@@ -80,7 +82,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ vars.DOCKERHUB_USERNAME }}" --password-stdin
-            sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/flask-app:latest
+            sudo docker pull flask-app:latest
             sudo docker stop flask-app || true
             sudo docker rm flask-app || true
             sudo docker run -d --name flask-app -p 80:5000 ${{ secrets.DOCKER_HUB_USERNAME }}/flask-app:latest

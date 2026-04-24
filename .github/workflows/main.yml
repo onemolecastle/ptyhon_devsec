@@ -48,7 +48,7 @@ jobs:
           push: true 
           #tags: ${{vars.DOCKERHUB_USERNAME }}/startbootstrap:v1
           tags: ${{secrets.DOCKERHUB_USERNAME }}/flask-app:v1
-          file: ./Dockerfile
+          #file: ./Dockerfile
 
      # - name: Build Docker Image
       #  run: docker build -t flask-app:${{ github.sha }} .

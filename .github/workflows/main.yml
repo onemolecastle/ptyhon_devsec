@@ -15,8 +15,8 @@ jobs:
       - name: Dependency Scan (Safety)
         run: |
           pip install safety
-          #safety check -r requirements.txt
-          safety scan -r requirements.txt
+          safety check -r requirements.txt
+          #safety scan -r requirements.txt
 
       # 2. SAST (Static Analysis)
       - name: Static Analysis (Bandit)

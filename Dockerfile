@@ -2,7 +2,8 @@
 FROM python:3.11-slim AS builder
 WORKDIR /app
 RUN mkdir -p /app/optimisation
-COPY requirements.txt . # caching optimisation
+# caching optimisation
+COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
 # Stage 2: Final Run

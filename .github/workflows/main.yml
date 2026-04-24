@@ -53,7 +53,7 @@ jobs:
       - name: Build Docker Image
         run: | 
           file optimisation
-          sudo docker system prune -a
+          sudo docker system prune -a -auto-approve
           sudo docker build --no-cache --progress=plain -t flask-app:${{ github.sha }} .
           
 

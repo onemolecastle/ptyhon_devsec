@@ -44,11 +44,11 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-        context: .
-        push: true 
+          context: .
+          push: true 
           #tags: ${{vars.DOCKERHUB_USERNAME }}/startbootstrap:v1
-         tags: ${{secrets.DOCKERHUB_USERNAME }}/flask-app:v1
-         file: ./Dockerfile
+          tags: ${{secrets.DOCKERHUB_USERNAME }}/flask-app:v1
+          file: ./Dockerfile
 
     #  - name: Build Docker Image
     #    run: |

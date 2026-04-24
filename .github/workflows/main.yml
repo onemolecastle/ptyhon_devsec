@@ -52,7 +52,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-         sudo ls -la /var/lib/docker/overlay2/whvh772pa7q874335zqf0pwrm/merged/app/optimisation
+         sudo ls -la /var/lib/docker/overlay2/whvh772pa7q874335zqf0pwrm/merged/app/
          sudo cat /var/lib/docker/overlay2/whvh772pa7q874335zqf0pwrm/merged/app/optimisation
           docker build -t flask-app:${{ github.sha }} .
           

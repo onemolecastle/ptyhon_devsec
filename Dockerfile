@@ -11,9 +11,9 @@ WORKDIR /app
 # Create a non-privileged user
 RUN groupadd -g 999 appuser && useradd -r -u 999 -g appuser appuser
 COPY --from=builder /root/.local /home/appuser/.local
-COPY /app/optimisation/ ./optimisation/
-COPY app.py .
-#COPY ..
+#COPY /app/optimisation/ ./optimisation/
+#COPY app.py .
+COPY ..
 ENV PATH=/home/appuser/.local/bin:$PATH
 USER appuser
 

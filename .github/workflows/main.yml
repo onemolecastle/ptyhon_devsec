@@ -52,7 +52,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          sudo docker build --no-cache --progress=plain -t flask-app:${{ github.sha }} .
+          sudo docker build --no-cache --progress=plain -t ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }} .
       - name: Push to docker hub 
         run: |
          echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
@@ -64,7 +64,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           #image-ref: 'flask-app:${{ github.sha }}'
-          image-ref: flask-app:${{ github.sha }}
+          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
           format: 'table'
           exit-code: '1' # Fails build if vulnerabilities are found
           severity: 'CRITICAL,HIGH'

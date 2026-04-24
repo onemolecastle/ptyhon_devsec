@@ -37,7 +37,7 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v4
         with:
-          username: ${{ vars.DOCKERHUB_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       #- uses: actions/checkout@v
 
@@ -47,7 +47,7 @@ jobs:
           context: .
           push: true 
           #tags: ${{vars.DOCKERHUB_USERNAME }}/startbootstrap:v1
-          tags: ${{vars.DOCKERHUB_USERNAME }}/flask-app:v1
+          tags: ${{secrets.DOCKERHUB_USERNAME }}/flask-app:v1
           file: ./Dockerfile
 
      # - name: Build Docker Image
@@ -58,7 +58,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           #image-ref: 'flask-app:${{ github.sha }}'
-          image-ref: ${{vars.DOCKERHUB_USERNAME }}/flask-app:v1
+          image-ref: ${{secrets.DOCKERHUB_USERNAME }}/flask-app:v1
           format: 'table'
           exit-code: '1' # Fails build if vulnerabilities are found
           severity: 'CRITICAL,HIGH'

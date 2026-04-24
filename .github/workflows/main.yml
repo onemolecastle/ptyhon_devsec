@@ -40,21 +40,21 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - uses: actions/checkout@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true 
-          tags: ${{secrets.DOCKERHUB_USERNAME }}/flask-app:v1
-          file: ./Dockerfile
+     # - name: Set up Docker Buildx
+     #   uses: docker/setup-buildx-action@v4
+     # - name: Build and push
+     #   uses: docker/build-push-action@v6
+     #   with:
+     #     context: .
+     #     push: true 
+     #     tags: ${{secrets.DOCKERHUB_USERNAME }}/flask-app:v1
+     #     file: ./Dockerfile
 
-    #  - name: Build Docker Image
-    #    run: |
-    #      sudo docker build --no-cache --progress=plain -t flask-app:${{ github.sha }} .
-    #  - name: Push to docker hub 
-    #    run: sudo docker push ${{secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
+      - name: Build Docker Image
+        run: |
+          sudo docker build --no-cache --progress=plain -t flask-app:${{ github.sha }} .
+      - name: Push to docker hub 
+        run: sudo docker push ${{secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
           
 
       # 4. Container Scan (Trivy)

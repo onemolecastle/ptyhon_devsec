@@ -56,7 +56,7 @@ jobs:
       - name: Push to docker hub 
         run: |
          #echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-         docker push ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
+         sudo docker push ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
           
 
       # 4. Container Scan (Trivy)

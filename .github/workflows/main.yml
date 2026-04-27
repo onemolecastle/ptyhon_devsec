@@ -52,11 +52,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-         sudo docker build --no-cache --progress=plain -t ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }} .
+         docker build --no-cache --progress=plain -t ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }} .
       - name: Push to docker hub 
         run: |
          #echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-         sudo docker push ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
+         docker push ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }}
           
 
       # 4. Container Scan (Trivy)

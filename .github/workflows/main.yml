@@ -42,9 +42,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build, Tag, and Push
         run: |
-         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-         docker build -t ${{ secrets.DOCKER_USERNAME }}/flask-app:latest .
-         docker push ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+         echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+         docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:latest .
+         docker push ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:latest
      # - name: Set up Docker Buildx
      #   uses: docker/setup-buildx-action@v4
      # - name: Build and push

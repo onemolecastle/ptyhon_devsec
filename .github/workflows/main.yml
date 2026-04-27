@@ -52,7 +52,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-         docker build --no-cache --progress=plain -t ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }} .
+         sudo docker build --no-cache --progress=plain -t ${{ secrets.DOCKERHUB_USERNAME }}/flask-app:${{ github.sha }} .
       - name: Push to docker hub 
         run: |
          #echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
